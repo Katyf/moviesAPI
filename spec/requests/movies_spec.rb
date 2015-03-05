@@ -43,33 +43,24 @@ describe 'Movie Requests' do
     end
   end
 
-  # describe '#update' do
-  #   it 'updates a post' do
-  #     @post = Post.first
-  #     patch "/movies/#{@post.id}",
-  #     { post: {
-  #       title: "Bob Loblaw's Law Blog",
-  #       author: "Bob Loblaw",
-  #       body: "A husband and a wife cannot be convicted of the same crime"
-  #       } }.to_json,
-  #       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
-  #       expect(response).to be_success
-  #       expect(response.content_type).to be Mime::JSON
+  describe '#update' do
+    it 'updates a movie' do
+      @movie = Movie.first
+      patch "/movies/#{@movie.id}",
+      { movie: {
+        title: "The Avengers",
+        total_gross: 623279547,
+        release_date: "04-05-2012",
+        MPAA_rating: "PG-13",
+        description: "Nick Fury is director of S.H.I.E.L.D, an international peace keeping agency. The agency is a who's who of Marvel Super Heroes, with Iron Man, The Incredible Hulk, Thor, Captain America, Hawkeye and Black Widow. When global security is threatened by Loki and his cohorts, Nick Fury and his team will need all their powers to save the world from disaster."
+        } }.to_json,
+        { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+        expect(response).to be_success
+        expect(response.content_type).to be Mime::JSON
 
-  #       post = JSON.parse(response.body)
-  #       expect(post["author"]).to eq "Bob Loblaw"
-  #   end
-  # end
-
-  # describe '#destroy' do
-  #   it 'DESTROYS A MOVIE' do
-  #     @post = Post.first
-  #     delete "/movies/#{@post.id}"
-  #     expect(response.status).to eq 202
-
-  #     movies = JSON.parse(response.body)
-  #     expect(movies.length).to eq 9
-  #   end
-  # end
+        movie = JSON.parse(response.body)
+        expect(movie["title"]).to eq "The Avengers"
+    end
+  end
 
 end

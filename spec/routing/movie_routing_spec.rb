@@ -18,8 +18,9 @@ RSpec.describe "routes for movies" do
     expect(post('/movies')).to route_to('movies#create')
   end
 
-  # it 'routes PATCH /posts/:id to the posts controller' do
-  #   expect(patch("/posts/#{post.id}")).to route_to('posts#update'), id: post.id.to_s
-  # end
+  it 'routes PATCH /movies/:id to the movies controller' do
+    movie = FactoryGirl.create(:movie)
+    expect(patch("/movies/#{movie.id}")).to route_to('movies#update', id: movie.id.to_s)
+  end
 
 end
