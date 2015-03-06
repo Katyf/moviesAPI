@@ -1,9 +1,14 @@
 class ReviewsController < ApplicationController
 
   def index
-    @movie = Movie.find(params[:movie_id])
-    @reviews = @movie.reviews
-    render json: @reviews, status: 200
+    if params[:movie_id]
+      @movie = Movie.find(params[:movie_id])
+      @reviews = @movie.reviews
+      render json: @reviews, status: 200
+    else
+      @reviews = Review.all
+      render json: @reviews, status: 200
+    end
   end
 
   def create

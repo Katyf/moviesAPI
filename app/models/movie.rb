@@ -3,6 +3,6 @@ class Movie < ActiveRecord::Base
 
   has_many :reviews, dependent: :destroy
 
-  validates :title, presence: true, uniqueness: true
-  validates :MPAA_rating, inclusion: {in: MPAA_RATING, message: "is Invalid"}
+  # validates :title, presence: true, uniqueness: true
+  # validates :MPAA_rating, inclusion: {in: MPAA_RATING, message: "is Invalid"}
 end
