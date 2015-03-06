@@ -38,24 +38,29 @@ describe 'Reviews Requests' do
     end
   end
 
-  # describe '#update' do
-  #   it 'updates a movie' do
-  #     @movie = Movie.first
-  #     patch "/movies/#{@movie.id}",
-  #     { movie: {
-  #       title: "The Avengers",
-  #       total_gross: 623279547,
-  #       release_date: "04-05-2012",
-  #       MPAA_rating: "PG-13",
-  #       description: "Nick Fury is director of S.H.I.E.L.D, an international peace keeping agency. The agency is a who's who of Marvel Super Heroes, with Iron Man, The Incredible Hulk, Thor, Captain America, Hawkeye and Black Widow. When global security is threatened by Loki and his cohorts, Nick Fury and his team will need all their powers to save the world from disaster."
-  #       } }.to_json,
-  #       { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
-  #       expect(response).to be_success
-  #       expect(response.content_type).to be Mime::JSON
+  describe '#update' do
+    it 'updates a review and return the review' do
+      @review = Review.first
+      patch "/admin/reviews/#{@review.id}",
+      { review: {
+        author: "Ashlinn",
+        rating: 4,
+        body: "It was good."
+        } }.to_json,
+        { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+        expect(response).to be_success
+        expect(response.content_type).to be Mime::JSON
+        review = JSON.parse(response.body)
+        expect(review['author']).to eq "Ashlinn"
+    end
+  end
 
-  #       movie = JSON.parse(response.body)
-  #       expect(movie["title"]).to eq "The Avengers"
-  #   end
-  # end
+  describe '#destroy' do
+    it 'destroys a review' do
+      @review = Review.first
+      delete "/admin/reviews/#{@review.id}"
+      expect(response.status).to eq 204
+    end
+  end
 
 end

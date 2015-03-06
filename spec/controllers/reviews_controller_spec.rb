@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'byebug'
+
 RSpec.describe ReviewsController do
 
   describe 'GET index' do
@@ -53,7 +54,25 @@ RSpec.describe ReviewsController do
     #   expect(assigns(:review)).to be_a_new Review
     #   expect(assigns(:review)).to be_persisted
     # end
-
   end
+
+  # describe 'PATCH one review' do
+  #   @review = FactoryGirl.build(:review, author: "James Dong")
+  #   it 'updates the requested review' do
+  #     patch :update, review: FactoryGirl.attributes_for(:review, author: "Larry Johnson")
+  #       @review.reload
+  #       # @review.author.should eq("Larry Johnson")
+  #   end
+  # end
+
+
+  describe 'DELETE a review' do
+   it 'destroys the selected review' do
+     review = FactoryGirl.create(:review)
+     expect do
+       delete :destroy, id: review
+     end.to change(Review, :count).by(-1)
+   end
+ end
 
 end
