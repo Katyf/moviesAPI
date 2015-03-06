@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   scope '/admin' do
-    resources :reviews, only: [:update, :destroy]
+    resources :reviews, only: [:index, :update, :destroy]
   end
 
 end

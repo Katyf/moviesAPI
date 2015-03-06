@@ -8,6 +8,12 @@ RSpec.describe "routes for review" do
     expect(get("/movies/#{movie1.id}/reviews")).to route_to('reviews#index', movie_id: movie1.id.to_s)
   end
 
+  it 'routes GET /movies/id/reviews to the review controller' do
+    movie1 = FactoryGirl.create(:movie)
+    review = FactoryGirl.create(:review)
+    expect(get("/admin/reviews/")).to route_to('reviews#index')
+  end
+
   it 'routes POST /movies/id/reviews to the review controller' do
     movie1 = FactoryGirl.create(:movie)
     expect(post("/movies/#{movie1.id}/reviews")).to route_to('reviews#create', movie_id: movie1.id.to_s)
