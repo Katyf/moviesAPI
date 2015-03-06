@@ -19,6 +19,16 @@ describe 'Reviews Requests' do
     end
   end
 
+  describe '#index' do
+    it 'gets all of the reviews for an admin' do
+      @reviews = Review.all
+      get "/admin/reviews"
+      expect(response).to be_success
+      json = JSON.parse(response.body)
+      expect(json.length).to eq @reviews.length
+    end
+  end
+
 
   describe '#create' do
     it 'creates a review' do
