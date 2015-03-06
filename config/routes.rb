@@ -3,4 +3,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:index, :create]
   end
 
+  scope '/admin' do
+    resources :reviews, only: [:update, :destroy]
+  end
+
 end
