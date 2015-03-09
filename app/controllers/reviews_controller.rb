@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_filter :authenticate, only: [:create]
 
   def index
     if params[:movie_id]
