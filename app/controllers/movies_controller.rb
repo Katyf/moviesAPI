@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_filter :authenticate, only: [:create]
 
   def index
     @movies = Movie.all
@@ -29,10 +30,9 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movies = Movie.all
     @movie = Movie.find(params[:id])
     @movie.destroy
-    render json: @movies, status: 202
+    head :no_content
   end
 
   private

@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   end
 
   resources :users, defaults: { format: :json }, only: [:create] do
-        post 'sign_in', on: :collection
-      end
+    post 'sign_in', on: :collection
+  end
 
   scope '/admin' do
+    resources :movies, only: [:destroy]
     resources :reviews, only: [:index, :update, :destroy]
   end
 
